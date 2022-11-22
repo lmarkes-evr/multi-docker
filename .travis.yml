@@ -14,3 +14,11 @@ after_success:
   - docker build -t lmarkes/multi-nginx ./nginx
   - docker build -t lmarkes/multi-server ./server
   - docker build -t lmarkes/multi-worker ./worker
+
+# Log in docker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+# take images and push to docker hub
+  - docker push lmarkes/multi-client
+  - docker push lmarkes/multi-nginx
+  - docker push lmarkes/multi-server
+  - docker push lmarkes/multi-worker
